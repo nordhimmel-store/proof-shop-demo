@@ -1,0 +1,11 @@
+# PROOF demo shop: credits and licences
+- Three.js r169 (MIT), including the postprocessing addons (EffectComposer, UnrealBloomPass, OutputPass), and GSAP 3.12 (GreenSock standard licence). Both load from the jsDelivr CDN.
+- Fonts: Archivo Black, IBM Plex Mono and Caveat, from Google Fonts (SIL OFL).
+- Textures (CC0), shipped as 1k webp in assets/tex/:
+  - ambientCG: Concrete046, Metal009 (brushed), Metal027 (painted steel), Paper006
+  - Poly Haven: white_maple_veneer, clean_asphalt (used as the grip-tape grain)
+- HDRI: Poly Haven studio_small_09, 1k (CC0).
+- SFX in assets/sfx/: press_slam, press_stamp_hit, hydraulic_press_hiss, wood_creak, ui_click_01 and mechanical_clunk. These came from the asset bot; see its log for the Freesound CC0 source of each file. Additional foley and the sub-bass are synthesised live with WebAudio (original).
+- Deck graphics deck_01–08, the PROOF wordmark and the serial stamp are originals made by the Canva bot for this project (assets/canva/).
+- Original code: the procedural deck, moulds and press geometry, the hazard decal, the gauge, the chromatic-aberration shader, the sketch and loader rendering, and the coded fallback graphics.
+- Full-resolution source assets were moved out of the site to /workspace/proof_src_assets/ (not shipped).

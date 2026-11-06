@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PROOF · every deck starts as a bad drawing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><script src="product.js"></script>
+</head><body>
+<canvas id="gl"></canvas>
+<div class="vig"></div><div class="dust"></div>
+<div id="load"><canvas id="ldc" width="600" height="260"></canvas><p class="hand">Warming up the press…</p></div>
+<script>(function(){var c=document.getElementById('ldc'),x=c.getContext('2d'),t0=performance.now();function f(){if(!c.isConnected)return;var p=Math.min(1,(performance.now()-t0)/1600),L=520,hw=70,hl=L/2-hw,pts=[],i,a;
+for(i=0;i<=30;i++)pts.push([-hl+2*hl*i/30,-hw]);for(i=0;i<=20;i++){a=-Math.PI/2+Math.PI*i/20;pts.push([hl+Math.cos(a)*hw,Math.sin(a)*hw])}for(i=0;i<=30;i++)pts.push([hl-2*hl*i/30,hw]);for(i=0;i<=20;i++){a=Math.PI/2+Math.PI*i/20;pts.push([-hl+Math.cos(a)*hw,Math.sin(a)*hw])}
+x.clearRect(0,0,600,260);x.save();x.translate(300,130);x.rotate(-.12);x.strokeStyle='rgba(43,43,43,.85)';x.lineWidth=2;x.lineCap='round';x.beginPath();var n=Math.floor(pts.length*p);for(i=0;i<n;i++){var q=pts[i];i?x.lineTo(q[0]+(Math.random()-.5)*1.5,q[1]+(Math.random()-.5)*1.5):x.moveTo(q[0],q[1])}x.stroke();
+if(n>0&&n<pts.length){var q=pts[n-1];x.translate(q[0],q[1]);x.rotate(.7);x.fillStyle='#2B2B2B';x.fillRect(-3,-46,6,40);x.fillStyle='#E3C79A';x.fillRect(-3,-56,6,10);x.beginPath();x.moveTo(-3,-6);x.lineTo(3,-6);x.lineTo(0,0);x.fill()}x.restore();
+if(p>=1)t0=performance.now()-1600+(Math.random()<.02?1600:0);requestAnimationFrame(f)}f()})();</script>
+
+<section id="sketch"><canvas id="sk"></canvas>
+  <div class="sk-copy"><h1>EVERY DECK STARTS AS A BAD DRAWING.</h1><p class="hand">Yours just has to survive the press.</p></div>
+  <button id="enter" class="sk-hit" aria-label="Tap the deck to fall in"></button>
+  <button id="skipIntro" class="mono skipintro">SKIP INTRO · GO STRAIGHT TO THE PRESS →</button>
+  <div id="done" hidden class="sk-done"><p class="mono" id="doneSerial"></p><p class="mono" id="fulStatus"></p>
+    <div class="row"><button class="btn red" id="dl">DOWNLOAD YOUR PROOF</button><button class="btn" id="dlPrint">PRINT FILE (PNG)</button><button class="btn" id="dlJson">ORDER JSON</button></div>
+    <div class="row"><button class="btn" id="again">WATCH IT AGAIN</button><button class="btn" id="rec">RECORD THE SLAM (9:16)</button><button class="btn" id="another">DESIGN ANOTHER</button></div></div>
+</section>
+<div id="tear" class="tear"></div>
+
+<header class="hud"><img class="mark" src="assets/canva/proof_wordmark_white.webp" alt="PROOF" width="120" height="31">
+  <nav class="rail" id="rail" aria-label="Stations"></nav></header>
+
+<div class="hint" id="hint" hidden><svg viewBox="0 0 60 40" aria-hidden="true"><path d="M4 6 C 20 4, 40 14, 52 32 M52 32 L 40 30 M52 32 L 50 20" fill="none" stroke="#FFB54A" stroke-width="2.5" stroke-linecap="round"/></svg><span class="hand" id="hintTxt"></span><button class="mono hbtn" id="hintBtn"></button></div>
+
+<div class="ov" id="ov0"><div class="sheets" id="sheets"></div><div class="jarshelf" id="jars"></div></div>
+<div class="ov" id="ov2"><div class="tray" id="thumbs"></div></div>
+<div class="ov" id="ov3"><div class="stick" id="typeblocks" aria-hidden="true"></div><input id="txt" maxlength="22" placeholder="TYPE YOUR NAME OR A LINE" aria-label="Text on the bottom of the deck" autocomplete="off"></div>
+<div class="brass" id="brass" hidden><div class="handle"></div><div class="face"><img id="brassFace" alt=""></div></div>
+<div class="title" id="title" hidden></div>
+
+<aside class="receipt" id="receipt">
+  <div class="r-head"><canvas id="thumb" width="64" height="256"></canvas>
+    <div class="r-sum"><p class="mono k">WORK ORDER · <span id="stn"></span></p><p class="r-price"><b id="rPrice"></b> <span class="mono">mock price</span></p><dl id="rSpec"></dl></div></div>
+  <p class="mono chk">⚠ <span class="cn"></span></p>
+  <form id="wo" class="wo" hidden><p class="mono tag">TEST ORDER: NO PAYMENT TAKEN · Demo press. Nothing gets charged and nothing gets made.</p>
+    <label class="mono lab">NAME<input name="nm" required maxlength="24" autocomplete="off"></label>
+    <label class="mono lab">EMAIL (DEMO)<input name="em" type="email" required autocomplete="off"></label>
+    <label class="mono lab">SHIP TO (DEMO)<input name="ad" required placeholder="STREET" autocomplete="off"></label>
+    <div class="two"><input name="ci" required placeholder="CITY" aria-label="City" autocomplete="off"><input name="pc" required placeholder="POSTCODE" aria-label="Postcode" autocomplete="off"></div>
+    <input name="co" required placeholder="COUNTRY" aria-label="Country" value="" autocomplete="off">
+    <div class="mono fakepay">CARD FIELD DISABLED · DEMO</div>
+    <p class="mono s">Made to order, so it ships when it's done, not before. Pull the red lever on the press.</p>
+    <button type="button" class="btn red press" id="press"><span>OR HOLD HERE · <b id="pr"></b></span><i id="hold"></i></button>
+    <p class="mono s" id="proc" hidden>Applying a frankly rude amount of pressure…</p></form>
+  <details class="fb" id="fb"><summary class="mono">TAP / KEYBOARD CONTROLS</summary>
+    <div class="st" data-s="0"><div class="row" id="presets"></div><div class="row" id="jarBtns"></div></div>
+    <div class="st" data-s="1"><div class="row" id="moulds"></div><button class="btn sm hold" id="gaugeBtn">HOLD TO PRESS <i id="gauge"></i></button></div>
+    <div class="st" data-s="2"><p class="mono notice">Only upload art you made or have the rights to. No logos, brands or characters you don't own. We'll cancel orders that infringe.</p>
+      <label class="mono"><input type="checkbox" id="rights"> I own this art</label>
+      <label class="btn sm" id="uplBtn" aria-disabled="true">UPLOAD PNG/JPG<input type="file" id="file" accept="image/png,image/jpeg" disabled hidden></label>
+      <div class="sl"><label class="mono">SCALE<input type="range" id="sc" min=".5" max="2" step=".01" value="1"></label><label class="mono">ROTATE<input type="range" id="rot" min="-180" max="180" value="0"></label><label class="mono">MOVE<input type="range" id="pos" min="-.5" max=".5" step=".01" value="0"></label></div></div>
+    <div class="st" data-s="3"><div class="row" id="grips"></div></div>
+  </details>
+  <div class="r-cta"><button class="btn sm" id="undo" type="button">↶ UNDO THAT</button><button class="btn red" id="pressIt" type="button">PRESS IT →</button></div>
+</aside>
+<button class="lever" id="next" aria-label="Next station"><i></i>NEXT</button>
+<div id="flash" class="flash"></div>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script type="module" src="app.js"></script>
+</body></html>
